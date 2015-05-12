@@ -1,0 +1,11 @@
+<form action="<%= http_dest %>" method="post">
+  <input type="hidden" name="_method" value="<%= form_method %>"> 
+  <input type="hidden" name="cat_rental_request[cat_id]" value="<%= @cat.id %>">
+  <label for="start-date">Start date</label>
+  <input type="date" name="cat_rental_request[start_date]" id="start-date" value="<%= rental.start_date %>"><br/>
+
+  <label for="end-date">End date</label>
+  <input type="date" name="cat_rental_request[end_date]" id="end-date" value="<%= rental.end_date %>"><br/>
+
+  <input type="submit" value="<%= submit_text %>">
+</form>

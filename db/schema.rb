@@ -11,21 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512181734) do
+ActiveRecord::Schema.define(version: 20150512230417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cat_rental_requests", force: :cascade do |t|
+    t.integer  "cat_id",     null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "status",     null: false
+  end
+
+  add_index "cat_rental_requests", ["cat_id"], name: "index_cat_rental_requests_on_cat_id", using: :btree
+
   create_table "cats", force: :cascade do |t|
     t.string   "color"
-    t.string   "name",        null: false
-    t.string   "sex",         null: false
+    t.string   "name",                                        null: false
+    t.string   "sex",                                         null: false
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "birth_year"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.datetime "birth_date",  default: '2015-05-12 23:05:12', null: false
   end
 
   add_index "cats", ["name"], name: "index_cats_on_name", using: :btree
 
+  add_foreign_key "cat_rental_requests", "cats"
 end
