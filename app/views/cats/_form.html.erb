@@ -1,0 +1,20 @@
+<form action="<%= http_dest %>" method="post">
+  <input type="hidden" name="_method" id="" value="<%= form_method %>"
+  <label for="cat-birth-year">Year born</label>
+  <input type="text" name="cat[birth_year]" id="cat-birth-year" value="<%= cat.birth_year %>"><br/>
+
+  <label for="cat-color">Color(red, brown, black, white, calico)</label>
+  <input type="text" name="cat[color]" id="cat-color" value="<%= cat.color %>"><br/>
+
+  <label for="cat-name">Name</label>
+  <input type="text" name="cat[name]" id="cat-name" value="<%= cat.name %>"><br/>
+
+  <label for="cat-sex">Sex</label>
+  <input type="text" name="cat[sex]" id="cat-sex" value="<%= cat.sex %>"><br/>
+
+  <label for="cat-description">Description</label>
+  <input type="textarea" name="cat[description]" id="cat-description" value="<%= cat.description %>"><br/>
+
+  <input type="submit" value="<%= submit_text %>">
+
+</form>

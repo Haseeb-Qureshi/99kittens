@@ -1,0 +1,11 @@
+<h1><%= @cat.name %></h1>
+
+<table>
+  <% @cat.attributes.each do |attr, value| %>
+    <% next if ["created_at", "updated_at", "name", "id"].include?(attr) %>
+      <tr><th><%= attr %></th> <td><%= value %></td></tr>
+  <% end %>
+  <tr><th>age</th> <td><%= @cat.age %> </td></tr>
+</table>
+<br/>
+<%= link_to 'Back to all cats', cats_url %>
