@@ -6,3 +6,6 @@ CatRentalRequest.create!(cat_id: 1, start_date: 12.days.ago, end_date: 8.days.ag
 CatRentalRequest.create!(cat_id: 1, start_date: 5.days.ago, end_date: 4.days.ago, status: 'DENIED')
 CatRentalRequest.create!(cat_id: 1, start_date: 3.days.ago, end_date: 1.days.ago, status: 'DENIED')
 CatRentalRequest.create!(cat_id: 2, start_date: 26.days.ago, end_date: 1.days.ago, status: 'APPROVED')
+
+User.create!(user_name: "Hannibal", password: "hannibal")
+User.create!(user_name: "Loren", password: "lorenloren")

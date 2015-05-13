@@ -1,5 +1,6 @@
 <form action="<%= http_dest %>" method="post">
-  <input type="hidden" name="_method" id="" value="<%= form_method %>"
+  <input type="hidden" name="_method" value="<%= form_method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="cat-birth-year">Year born</label>
   <input type="date" name="cat[birth_date]" id="cat-birth-date" value="<%= cat.birth_date %>"><br/>
 

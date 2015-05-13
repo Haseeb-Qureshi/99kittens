@@ -1,5 +1,6 @@
 <form action="<%= http_dest %>" method="post">
-  <input type="hidden" name="_method" value="<%= form_method %>"> 
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="<%= form_method %>">
   <input type="hidden" name="cat_rental_request[cat_id]" value="<%= @cat.id %>">
   <label for="start-date">Start date</label>
   <input type="date" name="cat_rental_request[start_date]" id="start-date" value="<%= rental.start_date %>"><br/>

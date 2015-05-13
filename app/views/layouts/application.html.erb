@@ -7,11 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if flash[:errors] %>
-  <div class="errors"><span class="errors"><%= flash[:errors].join(". ") %></span></div>
-<% end %>
+  <header>
+    <% if current_user.nil? %>
+      <%= link_to "Log in", new_session_url %>
+    <% else %>
+      "Welcome, <%= current_user.user_name %>"
+      <%= link_to "Log out", session_url, method: :delete %>
 
-<%= yield %>
+    <% end %>
+  </header>
+
+  <% if flash[:errors] %>
+    <div class="errors">
+      <span class="errors">
+        <%= flash[:errors].join(". ") %>
+      </span>
+    </div>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>
