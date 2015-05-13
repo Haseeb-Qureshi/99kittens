@@ -33,8 +33,10 @@
         <% end %>
       </table>
       <% if rental.pending? %>
-        <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
-        <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+        <div class="approvals">
+          <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
+          <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+        </div>
       <% end %>
     <% end %> <br/>
   <% end %>
