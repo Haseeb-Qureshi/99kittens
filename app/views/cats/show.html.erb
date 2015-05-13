@@ -6,7 +6,8 @@
 
   <table>
     <% @cat.attributes.each do |attr, value| %>
-      <% next if ["created_at", "updated_at", "name", "id"].include?(attr) %>
+      <% next if ["created_at", "updated_at", "name", "id", "birth_date"].include?(attr) %>
+      <% next if value.blank? %>
       <tr>
         <th><%= attr %></th>
         <td><%= value %></td>
