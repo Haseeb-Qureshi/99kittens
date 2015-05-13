@@ -1,3 +1,5 @@
-<h1>Edit <%= @cat.name %></h1>
+<div>
+  <h1>Edit <%= @cat.name %></h1>
 
-<%= render "form", cat: @cat, form_method: :patch, submit_text: 'Edit cat', http_dest: cat_url(@cat) %>
+  <%= render "form", cat: @cat, form_method: :patch, submit_text: 'Edit cat', http_dest: cat_url(@cat) %>
+</div>

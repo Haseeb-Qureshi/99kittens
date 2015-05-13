@@ -9,4 +9,6 @@ Rails.application.routes.draw do
       post :deny, to: 'cat_rental_requests#deny'
     end
   end
+
+  root to: "cats#index"
 end

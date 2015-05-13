@@ -1,3 +1,5 @@
-<h1>Request to rent <%= @cat.name %></h1>
+<div>
+  <h1>Request to rent <%= @cat.name %></h1>
 
-<%= render "form", cat: @cat, rental: @rental, form_method: :post, submit_text: 'Create Request', http_dest: cat_rental_requests_url(@rental) %>
+  <%= render "form", cat: @cat, rental: @rental, form_method: :post, submit_text: 'Create Request', http_dest: cat_rental_requests_url(@rental) %>
+</div>

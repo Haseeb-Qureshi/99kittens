@@ -1,44 +1,47 @@
-<h1><%= @cat.name %></h1>
+<div>
+  <h1 class="name"><%= @cat.name %></h1>
 
-<img src="<%= @cat.place_kitten %>" height="350" width="350">
-<br/>
+  <img src="<%= @cat.place_kitten %>" height="350" width="350">
+  <br/>
 
-<table>
-  <% @cat.attributes.each do |attr, value| %>
-    <% next if ["created_at", "updated_at", "name", "id"].include?(attr) %>
-    <tr>
-      <th><%= attr %></th>
-      <td><%= value %></td>
-    </tr>
-  <% end %>
-  <tr>
-    <th>age</th>
-    <td><%= time_ago_in_words(@cat.birth_date) %></td>
-  </tr>
-</table><br/>
-
-<% if @cat.cat_rental_requests.any? %>
-  <h1>All Requests for <%= @cat.name %></h1><br/>
-
-  <% @cat.cat_rental_requests.order(:start_date).each do |rental| %>
-    <table>
-      <% rental.attributes.each do |attr, value| %>
-        <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
-        <% if attr == "status" %>
-          <tr><th><%= attr %></th> <td><%= value %></td></tr>
-        <% else %>
-          <tr><th><%= attr %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
-        <% end %>
-      <% end %>
-    </table>
-    <% if rental.pending? %>
-      <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
-      <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+  <table>
+    <% @cat.attributes.each do |attr, value| %>
+      <% next if ["created_at", "updated_at", "name", "id"].include?(attr) %>
+      <tr>
+        <th><%= attr %></th>
+        <td><%= value %></td>
+      </tr>
     <% end %>
-  <% end %> <br/>
-<% end %>
+    <tr>
+      <th>age</th>
+      <td><%= time_ago_in_words(@cat.birth_date) %></td>
+    </tr>
+  </table><br/>
 
+  <% if @cat.cat_rental_requests.any? %>
+    <h1>All Requests for <%= @cat.name %></h1><br/>
 
-<%= link_to "Back to all cats", cats_url %><br/>
-<%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/><br/>
-<%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+    <% @cat.cat_rental_requests.order(:start_date).each do |rental| %>
+      <table>
+        <% rental.attributes.each do |attr, value| %>
+          <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
+          <% if attr == "status" %>
+            <tr><th><%= attr %></th> <td><%= value %></td></tr>
+          <% else %>
+            <tr><th><%= attr %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
+          <% end %>
+        <% end %>
+      </table>
+      <% if rental.pending? %>
+        <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
+        <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+      <% end %>
+    <% end %> <br/>
+  <% end %>
+
+  <footer class="links">
+    <%= link_to "Back to all cats", cats_url %><br/>
+    <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/><br/>
+    <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+  </footer>
+</div>

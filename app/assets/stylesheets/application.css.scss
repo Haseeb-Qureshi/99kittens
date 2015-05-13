@@ -20,6 +20,7 @@
 ul{
   list-style-type: none;
   margin: 0px;
+  padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 40px;
 }
@@ -30,4 +31,67 @@ li{
 
 div{
   padding: 20px;
+}
+
+
+table{
+  margin: 30px;
+  margin-left: 60px;
+}
+
+tr{
+  padding: 5px;
+}
+
+th{
+  padding: 2px;
+}
+
+td{
+  padding-left: 20px;
+}
+
+h1{
+  margin-left: 30px;
+}
+
+h1.name{
+  margin-left: 100px;
+}
+
+h1.title{
+  margin-left: 0px;
+}
+
+img{
+  padding: 10px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+}
+
+label{
+  padding: 3px;
+}
+
+input{
+  margin-left: 5px;
+}
+
+footer.links{
+  padding-left: 60px;
+}
+
+div.errors {
+  padding: 20px;
+}
+
+span.errors{
+  color: red;
+  font-style: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 10px solid #FFC6B8;
+  background: #FFC6B8;
 }
