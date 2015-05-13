@@ -12,11 +12,12 @@
 #@
 
 class CatRentalRequest < ActiveRecord::Base
-  belongs_to :cat
-  validates :cat_id, :start_date, :end_date, presence: true
+  validates :cat_id, :start_date, :end_date, :user_id, presence: true
   validates :status, inclusion: { in: ["PENDING", "APPROVED", "DENIED"] }
   validate :doesnt_overlap_existing_approved_request
   after_initialize :set_status
+  belongs_to :cat
+  belongs_to :user
 
   def approve!
     CatRentalRequest.transaction do

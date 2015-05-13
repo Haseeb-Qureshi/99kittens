@@ -16,6 +16,4 @@ class UsersController < ApplicationController
     @user = User.new
     render :new
   end
-
-
 end

@@ -13,16 +13,14 @@
 #
 
 class Cat < ActiveRecord::Base
-  validates :color, :name, :sex, presence: true
+  validates :color, :name, :sex, :user_id, presence: true
   validates :color, inclusion: { in: %w(red brown black white calico),
     message: "must be selected." }
   validates :sex, inclusion: { in: ['M', 'F'],
     message: "must be selected." }
 
-  belongs_to :user
+  belongs_to :owner, class_name: 'User', foreign_key: :user_id, primary_key: :id
   has_many :cat_rental_requests
-
-
 
   def place_kitten
     num = (id % 150) + 350

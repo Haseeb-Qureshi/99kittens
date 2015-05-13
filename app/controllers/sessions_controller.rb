@@ -21,8 +21,7 @@ class SessionsController < ApplicationController
     @user = current_user
     session[:session_token] = nil
     @user.reset_session_token!
+    @current_user = nil
     redirect_to cats_url
   end
-
-
 end

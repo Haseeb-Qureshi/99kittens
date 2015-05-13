@@ -7,15 +7,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <% if current_user.nil? %>
-      <%= link_to "Log in", new_session_url %>
-    <% else %>
-      "Welcome, <%= current_user.user_name %>"
-      <%= link_to "Log out", session_url, method: :delete %>
-
-    <% end %>
-  </header>
 
   <% if flash[:errors] %>
     <div class="errors">

@@ -1,3 +1,5 @@
+<%= render 'shared/header' %>
+
 <div>
   <h1 class="name"><%= @cat.name %></h1>
 
@@ -6,7 +8,7 @@
 
   <table>
     <% @cat.attributes.each do |attr, value| %>
-      <% next if ["created_at", "updated_at", "name", "id", "birth_date"].include?(attr) %>
+      <% next if ["created_at", "updated_at", "name", "id", "birth_date", "user_id"].include?(attr) %>
       <% next if value.blank? %>
       <tr>
         <th><%= attr %></th>
@@ -17,23 +19,29 @@
       <th>age</th>
       <td><%= time_ago_in_words(@cat.birth_date) %></td>
     </tr>
+    <tr>
+      <th>owner</th>
+      <td><%= User.find(@cat.user_id).user_name %></td>
+    </tr>
   </table><br/>
 
   <% if @cat.cat_rental_requests.any? %>
     <h1>All Requests for <%= @cat.name %></h1><br/>
 
-    <% @cat.cat_rental_requests.order(:start_date).each do |rental| %>
+    <% @cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
       <table>
         <% rental.attributes.each do |attr, value| %>
           <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
           <% if attr == "status" %>
-            <tr><th><%= attr %></th> <td><%= value %></td></tr>
+            <tr><th>Status</th> <td><%= value %></td></tr>
+          <% elsif attr == "user_id" %>
+            <tr><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
           <% else %>
             <tr><th><%= attr %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
           <% end %>
         <% end %>
       </table>
-      <% if rental.pending? %>
+      <% if rental.pending? && current_user && current_user.owns?(@cat) %>
         <div class="approvals">
           <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
           <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
@@ -44,7 +52,12 @@
 
   <footer class="links">
     <%= link_to "Back to all cats", cats_url %><br/>
-    <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/><br/>
-    <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+    <% if current_user %>
+      <% if current_user.owns?(@cat) %>
+        <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/><br/>
+      <% else %>
+        <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+      <% end %>
+    <% end %>
   </footer>
 </div>

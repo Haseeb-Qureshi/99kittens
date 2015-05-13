@@ -13,12 +13,12 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  has_many :cats
-
   validates :user_name, :session_token, uniqueness: true, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token
 
+  has_many :cats
+  has_many :cat_rental_requests
 
 
   def self.find_by_credentials(username, password)
@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = SecureRandom.urlsafe_base64
     self.save!
+    session_token
   end
 
   def password=(password)
@@ -39,6 +40,10 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCrypt::Password.new(password_digest).is_password?(password)
+  end
+
+  def owns?(cat)
+    cat.owner == self
   end
 
   private

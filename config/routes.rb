@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:create, :new, :show]
-  resource :session
+  resources :users, only: [:create, :new]
+  resource :session, only: [:create, :new, :destroy]
 
   root to: "cats#index"
 end
