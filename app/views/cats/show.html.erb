@@ -1,5 +1,8 @@
 <h1><%= @cat.name %></h1>
 
+<img src="<%= @cat.place_kitten %>" height="350" width="350">
+<br/>
+
 <table>
   <% @cat.attributes.each do |attr, value| %>
     <% next if ["created_at", "updated_at", "name", "id"].include?(attr) %>
@@ -16,12 +19,16 @@
 
 <% if @cat.cat_rental_requests.any? %>
   <h1>All Requests for <%= @cat.name %></h1><br/>
-  
+
   <% @cat.cat_rental_requests.order(:start_date).each do |rental| %>
     <table>
       <% rental.attributes.each do |attr, value| %>
         <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
-        <tr><th><%= attr %></th> <td><%= value %></td></tr>
+        <% if attr == "status" %>
+          <tr><th><%= attr %></th> <td><%= value %></td></tr>
+        <% else %>
+          <tr><th><%= attr %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
+        <% end %>
       <% end %>
     </table>
     <% if rental.pending? %>

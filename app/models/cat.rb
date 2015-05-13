@@ -15,12 +15,16 @@
 class Cat < ActiveRecord::Base
   has_many :cat_rental_requests
   validates :color, :name, :sex, presence: true
-  validates :color, inclusion: { in: %w(red brown black white calico) }
-  validates :sex, length: { is: 1 }, inclusion: { in: ['M', 'F'] }
+  validates :color, inclusion: { in: %w(red brown black white calico),
+    message: "must be selected." }
+  validates :sex, inclusion: { in: ['M', 'F'],
+    message: "must be selected." }
+
+  def place_kitten
+    num = (id % 150) + 350
+    "http://placekitten.com/g/#{num+5}/#{num+20}"
+  end
 end
 
 
-# TA: strftime pretty birth_date
 # TA: CSS
-# Nicer error messages (locales)
-# Hash placekitten imnages
