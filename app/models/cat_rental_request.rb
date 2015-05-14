@@ -9,7 +9,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  status     :string           not null
-#@
+#  user_id    :integer          default(1), not null
+#
 
 class CatRentalRequest < ActiveRecord::Base
   validates :cat_id, :start_date, :end_date, :user_id, presence: true

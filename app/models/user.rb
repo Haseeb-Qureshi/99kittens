@@ -3,9 +3,8 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  user_name       :string(255)      not null
-#  password_digest :string(255)      not null
-#  session_token   :string(255)      not null
+#  user_name       :string           not null
+#  password_digest :string           not null
 #  created_at      :datetime
 #  updated_at      :datetime
 #
@@ -13,24 +12,18 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :user_name, :session_token, uniqueness: true, presence: true
+  validates :user_name, uniqueness: true, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  after_initialize :ensure_session_token
 
   has_many :cats
   has_many :cat_rental_requests
+  has_many :sessions
 
 
   def self.find_by_credentials(username, password)
     user = User.find_by(user_name: username)
     return user if user && user.is_password?(password)
     nil
-  end
-
-  def reset_session_token!
-    self.session_token = SecureRandom.urlsafe_base64
-    self.save!
-    session_token
   end
 
   def password=(password)
@@ -44,11 +37,5 @@ class User < ActiveRecord::Base
 
   def owns?(cat)
     cat.owner == self
-  end
-
-  private
-
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64
   end
 end

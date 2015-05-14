@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    @current_user ||= User.find_by(session_token: session[:session_token])
+     current_session = Session.includes(:user)
+        .find_by(session_token: session[:session_token])
+     @current_user = current_session.user unless current_session.nil?
   end
 
   def user_params
@@ -11,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in(user)
-    session[:session_token] = user.reset_session_token!
+    session[:session_token] = Session.create(user_id: user.id).session_token
   end
 
   def redirect_if_logged_in
