@@ -15,10 +15,6 @@ class Session < ActiveRecord::Base
 
   def self.create(attrs)
     #technically should check for collision, but whatever
-    session = super(user_id: attrs[:user_id], session_token: SecureRandom.urlsafe_base64)
-  end
-
-  def log_out
-    destroy
+    super(user_id: attrs[:user_id], session_token: SecureRandom.urlsafe_base64)
   end
 end
