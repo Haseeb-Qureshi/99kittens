@@ -14,6 +14,12 @@
     </ul>
   <% end %>
 
-  <br/>
-  <%= link_to "Rent out your own kitten", new_cat_url %>
+
+
+  <% if current_user %>
+    <h3><%= link_to "Rent out your own kitten", new_cat_url %></h3>
+    <small><%= link_to "Display all current sessions", display_session_url %></small>
+  <% else %>
+    <h3><%= link_to "Rent out your own kitten", new_user_url %></h3>
+  <% end %>
 </div>

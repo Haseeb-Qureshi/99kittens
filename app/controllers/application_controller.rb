@@ -13,10 +13,22 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in(user)
-    session[:session_token] = Session.create(user_id: user.id).session_token
+    session_details = get_session_details
+    new_session = Session.create(user_id: user.id, details: session_details)
+    session[:session_token] = new_session.session_token
   end
 
   def redirect_if_logged_in
     redirect_to cats_url if current_user
+  end
+
+  private
+
+  def get_session_details
+    user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
+    browser = user_agent.browser
+    platform = user_agent.platform
+    city = request.location.city
+    [browser, platform, city].join('$')
   end
 end

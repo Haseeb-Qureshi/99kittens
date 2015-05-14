@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
     redirect_to cats_url
   end
 
-  def index
+  def display
     @sessions = current_user.sessions
-    render :index
+    render :display
   end
 end
