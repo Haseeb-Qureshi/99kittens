@@ -6,7 +6,7 @@
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
         <label for="username">Username</label>
-        <input type="text" name="user[user_name]" value="<%= @user.user_name %>" class="form-control" id="username" placeholder="Enter username">
+        <input type="text" name="user[user_name]" value="<%= user.user_name %>" class="form-control" id="username" placeholder="Enter username">
 
         <label for="pw">Password</label>
         <input type="password" name="user[password]" class="form-control" id="pw" placeholder="Password">

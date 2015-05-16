@@ -11,12 +11,12 @@
 
         <label for="sex"><p>Sex</p>
           <div class="btn-group" data-toggle="buttons" id="sex">
-            <label class="btn btn-default <%= "active" unless @cat.sex == "F" %>">
-              <input checked type="radio" name="cat[sex]" value="M" <%= "checked" unless @cat.sex == "F" %>> Male
+            <label class="btn btn-default <%= "active" unless cat.sex == "F" %>">
+              <input checked type="radio" name="cat[sex]" value="M" <%= "checked" unless cat.sex == "F" %>> Male
             </label>
 
-            <label class="btn btn-default <%= "active" if @cat.sex == "F" %>">
-              <input type="radio" name="cat[sex]" value="F" <%= "checked" if @cat.sex == "F" %>> Female
+            <label class="btn btn-default <%= "active" if cat.sex == "F" %>">
+              <input type="radio" name="cat[sex]" value="F" <%= "checked" if cat.sex == "F" %>> Female
             </label>
           </div>
         </label>
@@ -24,18 +24,18 @@
 
         <label for="cat_coat_color">Color</label>
         <select class="form-control" name="cat[color]" id="cat_coat_color">
-          <option value="red" <%= "selected" if @cat.color == "red" %>>Red</option>
-          <option value="black" <%= "selected" if @cat.color == "black" %>>Black</option>
-          <option value="white" <%= "selected" if @cat.color == "white" %>>White</option>
-          <option value="brown" <%= "selected" if @cat.color == "brown" %>>Brown</option>
-          <option value="calico" <%= "selected" if @cat.color == "calico" %>>Calico</option>
+          <option value="red" <%= "selected" if cat.color == "red" %>>Red</option>
+          <option value="black" <%= "selected" if cat.color == "black" %>>Black</option>
+          <option value="white" <%= "selected" if cat.color == "white" %>>White</option>
+          <option value="brown" <%= "selected" if cat.color == "brown" %>>Brown</option>
+          <option value="calico" <%= "selected" if cat.color == "calico" %>>Calico</option>
         </select>
 
         <label for="cat-description">Description</label>
         <input type="text" name="cat[description]" id="cat-description" value="<%= cat.description %>" class="form-control" placeholder="What's interesting about your kitten?">
 
         <label for="cat-birth-date">Birth date</label>
-        <input type="date" name="cat[birth_date]" id="cat-birth-date" value="<%= cat.birth_date.to_date %>" class="form-control">
+        <input type="date" name="cat[birth_date]" id="cat-birth-date" value="<%= cat.birth_date.to_date if cat.birth_date %>" class="form-control">
         <br>
 
         <button type="submit" class="btn btn-default"> <%= submit_text %></button>

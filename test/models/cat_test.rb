@@ -9,7 +9,7 @@
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  birth_date  :datetime         default(Thu, 13 May 2010 20:09:34 UTC +00:00), not null
+#  birth_date  :datetime         not null
 #  user_id     :integer
 #
 

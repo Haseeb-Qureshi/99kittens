@@ -15,7 +15,8 @@
 class CatRentalRequest < ActiveRecord::Base
   validates :cat_id, :start_date, :end_date, :user_id, presence: true
   validates :status, inclusion: { in: ["PENDING", "APPROVED", "DENIED"] }
-  validate :doesnt_overlap_existing_approved_request
+  validate :doesnt_overlap_existing_approved_request,
+           :start_date_before_end_date
   after_initialize :set_status
   belongs_to :cat
   belongs_to :user
@@ -52,9 +53,12 @@ class CatRentalRequest < ActiveRecord::Base
     overlapping_requests.where(status: 'APPROVED')
   end
 
-
   def doesnt_overlap_existing_approved_request
     errors.add(:requests, "cannot overlap") if overlapping_approved_requests.any?
+  end
+
+  def start_date_before_end_date
+    errors.add(:start_date, "cannot precede end date") if end_date < start_date
   end
 
   def set_status

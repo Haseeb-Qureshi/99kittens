@@ -1,12 +1,20 @@
 <form action="<%= http_dest %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="_method" value="<%= form_method %>">
-  <input type="hidden" name="cat_rental_request[cat_id]" value="<%= @cat.id %>">
-  <label for="start-date">Start date</label>
-  <input type="date" name="cat_rental_request[start_date]" id="start-date" value="<%= rental.start_date %>"><br/>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1>Request to rent <%= cat.name %></h1>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="<%= form_method %>">
+        <input type="hidden" name="cat_rental_request[cat_id]" value="<%= cat.id %>">
 
-  <label for="end-date">End date</label>
-  <input type="date" name="cat_rental_request[end_date]" id="end-date" value="<%= rental.end_date %>"><br/>
+        <label for="start-date">From
+        <input type="date" name="cat_rental_request[start_date]" id="start-date" value="<%= Date.today %>"></label><br>
 
-  <input type="submit" value="<%= submit_text %>">
+        <label for="end-date">Until
+        <input type="date" name="cat_rental_request[end_date]" id="end-date" value="<%= rental.end_date %>"></label><br/>
+
+        <button type="submit" class="btn btn-default"> <%= submit_text %> </button>
+      </div>
+    </div>
+  </div>
 </form>
