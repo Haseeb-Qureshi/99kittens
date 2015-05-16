@@ -1,0 +1,7 @@
+<% if flash[:errors] %>
+  <div class="errors">
+    <span class="errors">
+      <%= flash[:errors].join(". ") %>
+    </span>
+  </div>
+<% end %>

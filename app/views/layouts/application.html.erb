@@ -7,16 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <% if flash[:errors] %>
-    <div class="errors">
-      <span class="errors">
-        <%= flash[:errors].join(". ") %>
-      </span>
-    </div>
-  <% end %>
-
-  <%= yield %>
+  <%= render "shared/header" %>
+  <%= render "shared/errors" %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
