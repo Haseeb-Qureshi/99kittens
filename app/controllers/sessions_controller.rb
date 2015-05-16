@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session = Session.find_by(session_token: session[:session_token])
-    session.destroy if session
+    my_session = Session.find_by(session_token: session[:session_token])
+    my_session.destroy if my_session
     @current_user = nil
     session[:session_token] = nil
     redirect_to cats_url

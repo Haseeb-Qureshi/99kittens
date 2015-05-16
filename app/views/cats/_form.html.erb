@@ -1,32 +1,45 @@
 <form action="<%= http_dest %>" method="post">
-  <input type="hidden" name="_method" value="<%= form_method %>">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label for="cat-birth-year">Year born</label>
-  <input type="date" name="cat[birth_date]" id="cat-birth-date" value="<%= cat.birth_date %>"><br/>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1> <%= title %> </h1>
+        <input type="hidden" name= "_method" value="<%= form_method %>">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label for="cat_coat_color">Color &nbsp;</label>
-  <select name="cat[color]" id="cat_coat_color">
-    <option value="red">Red</option>
-    <option value="black">Black</option>
-    <option value="white">White</option>
-    <option value="brown">Brown</option>
-    <option value="calico">Calico</option>
-</select><br/>
+        <label for="cat-name">Name</label>
+        <input type="text" name="cat[name]" id="cat-name" value="<%= cat.name %>" class="form-control" placeholder="Name">
 
-  <label for="cat-name">Name</label>
-  <input type="text" name="cat[name]" id="cat-name" value="<%= cat.name %>"><br/>
+        <label for="sex"><p>Sex</p>
+          <div class="btn-group" data-toggle="buttons" id="sex">
+            <label class="btn btn-default <%= "active" unless @cat.sex == "F" %>">
+              <input checked type="radio" name="cat[sex]" value="M" <%= "checked" unless @cat.sex == "F" %>> Male
+            </label>
 
-    <input type="radio" name="cat[sex]" id="cat_sex_female" value="F">
-    <label for="cat_sex_female">Female</label>
-    <br>
+            <label class="btn btn-default <%= "active" if @cat.sex == "F" %>">
+              <input type="radio" name="cat[sex]" value="F" <%= "checked" if @cat.sex == "F" %>> Female
+            </label>
+          </div>
+        </label>
+        <br>
 
-    <input type="radio" name="cat[sex]" id="cat_sex_male" value="M">
-    <label for="cat_sex_male">Male</label>
-    <br>
+        <label for="cat_coat_color">Color</label>
+        <select class="form-control" name="cat[color]" id="cat_coat_color">
+          <option value="red" <%= "selected" if @cat.color == "red" %>>Red</option>
+          <option value="black" <%= "selected" if @cat.color == "black" %>>Black</option>
+          <option value="white" <%= "selected" if @cat.color == "white" %>>White</option>
+          <option value="brown" <%= "selected" if @cat.color == "brown" %>>Brown</option>
+          <option value="calico" <%= "selected" if @cat.color == "calico" %>>Calico</option>
+        </select>
 
-  <label for="cat-description">Description</label>
-  <input type="textarea" name="cat[description]" id="cat-description" value="<%= cat.description %>"><br/>
+        <label for="cat-description">Description</label>
+        <input type="text" name="cat[description]" id="cat-description" value="<%= cat.description %>" class="form-control" placeholder="What's interesting about your kitten?">
 
-  <input type="submit" value="<%= submit_text %>">
+        <label for="cat-birth-date">Birth date</label>
+        <input type="date" name="cat[birth_date]" id="cat-birth-date" value="<%= cat.birth_date.to_date %>" class="form-control">
+        <br>
 
+        <button type="submit" class="btn btn-default"> <%= submit_text %></button>
+      </div>
+    </div>
+  </div>
 </form>

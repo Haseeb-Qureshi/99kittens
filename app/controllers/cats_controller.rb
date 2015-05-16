@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :validate_owner, only: [:edit, :update]
+  before_action :validate_owner, only: [:edit, :update, :destroy]
 
   def index
     @cats = Cat.all
@@ -39,11 +39,19 @@ class CatsController < ApplicationController
   def update
     @cat = Cat.find(params[:id])
     if @cat.update(cat_params)
+      flash[:notice] = "#{@cat.name} was updated!"
       redirect_to cat_url(@cat)
     else
       flash.now[:errors] = @cat.errors.full_messages
       render :edit
     end
+  end
+
+  def destroy
+    cat = Cat.find(params[:id])
+    cat.destroy
+    flash[:notice] = "#{cat.name} was deleted."
+    redirect_to cats_url
   end
 
   private

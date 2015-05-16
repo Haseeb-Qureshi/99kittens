@@ -1,5 +1,6 @@
-<div>
-  <h1>Tell us about your kitten.</h1>
-
-  <%= render "form", cat: @cat, form_method: :post, submit_text: 'Create cat', http_dest: cats_url %>
-</div>
+<%= render "form",
+    cat: @cat,
+    form_method: :post,
+    submit_text: 'Create cat',
+    http_dest: cats_url,
+    title: "Tell us about your kitten." %>

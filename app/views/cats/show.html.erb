@@ -52,7 +52,8 @@
     <%= link_to "Back to all cats", cats_url %><br/>
     <% if current_user %>
       <% if current_user.owns?(@cat) %>
-        <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/><br/>
+        <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/>
+        <%= link_to "Delete #{@cat.name}", cat_url(@cat), method: :delete %><br/>
       <% else %>
         <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
       <% end %>

@@ -1,13 +1,19 @@
 <form action="<%= http_dest %>" method="post">
   <div class="form-group">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <label for="username">Username</label>
-    <input type="text" name="user[user_name]" value="<%= @user.user_name %>" class="form-control" id="username" placeholder="Enter username">
+    <div class="row">
+      <div class="col-xs-5 col-xs-offset-3">
+        <h1> <%= title %> </h1>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-    <label for="pw">Password</label>
-    <input type="password" name="user[password]" class="form-control" id="pw" placeholder="Password">
+        <label for="username">Username</label>
+        <input type="text" name="user[user_name]" value="<%= @user.user_name %>" class="form-control" id="username" placeholder="Enter username">
+
+        <label for="pw">Password</label>
+        <input type="password" name="user[password]" class="form-control" id="pw" placeholder="Password">
 
 
-    <input type="submit" value="<%= submit_text %>" class="btn btn-default">
+        <button type="submit" class="btn btn-default"> <%= submit_text %> </button>
+      </div>
+    </div>
   </div>
 </form>
