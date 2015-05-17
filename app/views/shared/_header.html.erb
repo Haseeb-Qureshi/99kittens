@@ -21,10 +21,16 @@
 
 
         <% if current_user.nil? %>
-          <li class="<%= "active" if current_page?(new_session_url) %>"> <%= link_to "Log in", new_session_url %> </li>
-          <li class="<%= "active" if current_page?(new_user_url) %>"> <%= link_to "Register", new_user_url %> </li>
+          <li class="<%= "active" if current_page?(new_user_url) %>">
+            <%= link_to "Register", new_user_url %>
+          </li>
+          <li class="<%= "active" if current_page?(new_session_url) %>">
+            <a rel="nofollow" href="<%= new_session_url %>"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a>
+          </li>
         <% else %>
-          <li> <%= link_to "Sign out", session_url, method: :delete %> </li>
+          <li>
+            <a rel="nofollow" data-method="delete" href="<%= session_url %>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sign out</a>
+          </li>
         <% end %>
       </ul>
     </div>

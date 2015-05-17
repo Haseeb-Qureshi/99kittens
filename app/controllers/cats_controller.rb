@@ -50,7 +50,7 @@ class CatsController < ApplicationController
   def destroy
     cat = Cat.find(params[:id])
     cat.destroy
-    flash[:notice] = "#{cat.name} was deleted."
+    flash[:notice] = "#{cat.name} was deleted. I hope you can live with yourself."
     redirect_to cats_url
   end
 

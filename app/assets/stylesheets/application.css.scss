@@ -75,6 +75,11 @@ img.logo {
   margin-left: 15px;
 }
 
+img.desaturate {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); 
+}
+
 .voffset  { margin-top: 2px; }
 .voffset1 { margin-top: 5px; }
 .voffset2 { margin-top: 10px; }

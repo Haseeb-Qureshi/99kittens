@@ -1,6 +1,7 @@
 <% if flash[:errors] %>
   <div class="col-xs-8 col-xs-offset-2">
     <div class="alert alert-danger">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
       <%= flash[:errors].join(". ") + '.' %>
     </div>
   </div>
