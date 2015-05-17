@@ -27,12 +27,11 @@ gem 'sass-rails', '>= 3.2'
 gem 'bcrypt'
 gem 'useragent'
 gem 'geocoder'
+gem 'heroku'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'thin', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
