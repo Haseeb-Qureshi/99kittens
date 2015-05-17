@@ -35,6 +35,13 @@ img.cats {
   border-radius: 60px;
 }
 
+img.cat-thumb {
+  padding: 10px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+
 label {
   padding: 3px;
 }
@@ -77,7 +84,7 @@ img.logo {
 
 img.desaturate {
   -webkit-filter: grayscale(100%);
-  filter: grayscale(100%); 
+  filter: grayscale(100%);
 }
 
 .voffset  { margin-top: 2px; }

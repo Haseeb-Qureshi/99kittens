@@ -23,7 +23,7 @@
       </table>
     </div>
     <div class="btn-group-vertical center-text center-block" role="group">
-      <a href="<%= cats_url%>" class="btn btn-default" role="button">
+      <a href="<%= cats_url %>" class="btn btn-default" role="button">
         <span class="glyphicon glyphicon-th"></span>
         Back to all kittens
       </a>
@@ -38,7 +38,7 @@
             <%= "Delete #{@cat.name}" %>
           </a>
         <% else %>
-          <a href="<%= new_cat_cat_rental_request(@cat) %>" class="btn btn-default" role="button">
+          <a href="<%= new_cat_cat_rental_request_url(@cat) %>" class="btn btn-default" role="button">
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
             <%= "Request #{@cat.name}"%>
           </a>
