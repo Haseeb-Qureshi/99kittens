@@ -1,62 +1,75 @@
-<div>
-  <h1 class="name"><%= @cat.name %></h1>
-
-  <img class="cats" src="<%= @cat.place_kitten %>" height="350" width="350">
-  <br/>
-
-  <table>
-    <% @cat.attributes.each do |attr, value| %>
-      <% next if ["created_at", "updated_at", "name", "id", "birth_date", "user_id"].include?(attr) %>
-      <% next if value.blank? %>
-      <tr>
-        <th><%= attr %></th>
-        <td><%= value %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <th>age</th>
-      <td><%= time_ago_in_words(@cat.birth_date) %></td>
-    </tr>
-    <tr>
-      <th>owner</th>
-      <td><%= User.find(@cat.user_id).user_name %></td>
-    </tr>
-  </table><br/>
-
-  <% if @cat.cat_rental_requests.any? %>
-    <h1>All Requests for <%= @cat.name %></h1><br/>
-
-    <% @cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
-      <table>
-        <% rental.attributes.each do |attr, value| %>
-          <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
-          <% if attr == "status" %>
-            <tr><th>Status</th> <td><%= value %></td></tr>
-          <% elsif attr == "user_id" %>
-            <tr><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
-          <% else %>
-            <tr><th><%= attr %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
-          <% end %>
+<div class="row">
+  <h1 class="name text-center"><%= @cat.name %></h1>
+  <div class="col-sm-6">
+    <img class="cats center-block" src="<%= @cat.place_kitten %>" height="250" width="250">
+    <div class="table-responsive center-block">
+      <table class="table table-bordered table-striped">
+        <% @cat.attributes.each do |attr, value| %>
+          <% next if ["created_at", "updated_at", "name", "id", "birth_date", "user_id"].include?(attr) %>
+          <% next if value.blank? %>
+          <tr>
+            <th><em><%= attr %></em></th>
+            <td><%= value %></td>
+          </tr>
         <% end %>
+        <tr>
+          <th><em>age</em></th>
+          <td><%= time_ago_in_words(@cat.birth_date) %></td>
+        </tr>
+        <tr>
+          <th><em>owner</em></th>
+          <td><%= User.find(@cat.user_id).user_name %></td>
+        </tr>
       </table>
-      <% if rental.pending? && current_user && current_user.owns?(@cat) %>
-        <div class="approvals">
-          <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
-          <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
-        </div>
-      <% end %>
-    <% end %> <br/>
-  <% end %>
+    </div>
+  </div>
 
-  <footer class="links">
-    <%= link_to "Back to all cats", cats_url %><br/>
-    <% if current_user %>
-      <% if current_user.owns?(@cat) %>
-        <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/>
-        <%= link_to "Delete #{@cat.name}", cat_url(@cat), method: :delete %><br/>
-      <% else %>
-        <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+  <div class="col-sm-6">
+    <% if @cat.cat_rental_requests.any? %>
+      <h3>All Requests for <%= @cat.name %></h3>
+
+      <% @cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
+        <div class="table-responsive center-block">
+          <table class="table table-bordered">
+          <% styling = case rental.status
+          when "PENDING" then "warning"
+          when "DENIED" then "danger"
+          else "success"
+          end %>
+            <% rental.attributes.each do |attr, value| %>
+              <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
+              <% if attr == "status" %>
+                <tr class="<%= styling %>"><th>Status</th> <td><%= value %></td></tr>
+              <% elsif attr == "user_id" %>
+                <tr class="<%= styling %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
+              <% else %>
+                <tr class="<%= styling %>"><th><%= attr.capitalize.gsub('_', ' ') %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+        <% if rental.pending? && current_user && current_user.owns?(@cat) %>
+          <div class="approvals">
+            <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
+            <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  </footer>
+  </div>
+
+  <div class="col-sm-3">
+    <p>Words</p>
+  </div>
 </div>
+<div class="row">
+  <%= link_to "Back to all cats", cats_url %><br/>
+  <% if current_user %>
+    <% if current_user.owns?(@cat) %>
+      <%= link_to "Edit #{@cat.name}", edit_cat_url(@cat) %><br/>
+      <%= link_to "Delete #{@cat.name}", cat_url(@cat), method: :delete %><br/>
+    <% else %>
+      <%= link_to "Request #{@cat.name}", new_cat_cat_rental_request_url(@cat) %>
+    <% end %>
+  <% end %>
+</end>

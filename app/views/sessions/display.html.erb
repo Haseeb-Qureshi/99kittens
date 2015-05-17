@@ -2,13 +2,15 @@
   <h1>Devices logged in from</h1>
 
   <% @sessions.each_with_index do |session, i| %>
-    <table>
-      <% details = session.details.split('$') %>
-      <td><em>Session <%= i + 1 %></em></td>
-      <tr><th>Browser:</th> <td><%= details[0] %></td></tr>
-      <tr><th>Platform:</th> <td><%= details[1] %></td></tr>
-      <tr><th>Location:</th> <td><%= details[2] %></td></tr>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <% details = session.details.split('$') %>
+        <pre>Session <%= i + 1 %></pre>
+        <tr><th>Browser:</th> <td><%= details[0] %></td></tr>
+        <tr><th>Platform:</th> <td><%= details[1] %></td></tr>
+        <tr><th>Location:</th> <td><%= details[2] %></td></tr>
+      </table>
+    </div>
   <% end %>
 
   <%= link_to "Back to kittens index", cats_url %>
