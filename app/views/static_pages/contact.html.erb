@@ -1,2 +1,56 @@
-<h1>StaticPages#contact</h1>
-<p>Find me in app/views/static_pages/contact.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <h3>We want to know what you think.</h3>
+      <p>That's a total lie. We're hoping that you're not going to take the time to read anything below these big headers.</p>
+      <h3 class="voffset6">We take every piece of feedback seriously.</h3>
+      <p >We literally throw away your e-mails the moment we receive them. Yes, I know you can't literally throw away e-mails. What we do is we print them out and then we throw them away.</p>
+      <h3 class="voffset6">We want you to feel satisfied with our service.</h3>
+      <p>Actually, we think you're pretty stupid and wouldn't know a good company if it punched you in the face. Which we might do if you don't shut up.</p>
+    </div>
+    <div class="col-md-5 col-md-offset-2">
+      <h1>Contact us</h1>
+      <form class="new_message" id="new_message" action="/home" accept-charset="UTF-8" method="get">
+        <div class="form-stacked">
+          <fieldset>
+            <legend>Personal Information</legend>
+            <div class="form-group">
+              <label class="in" for="message_name">
+                Full Name
+              </label>
+              <input class="form-control required" placeholder="Stupid Face" type="text" id="message_name">
+            </div>
+            <div class="form-group">
+              <label class="in" for="message_email">
+                E-mail
+              </label>
+              <input class="form-control required" placeholder="idiot@internet.glom" type="text" id="message_email">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>What can we do for you?</legend>
+            <div class="form-group">
+              <label class="in" for="message_subject">
+                Subject
+              </label>
+              <select class="form-control required" id="message_subject">
+                <option value="General Questions">General Questions</option>
+                <option value="Shut up">Shut up</option>
+                <option value="Shut up">Shut up</option>
+                <option value="Shut up">Shut up</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="in" for="message">
+                Message
+              </label>
+              <textarea class="form-control required" rows="3" placeholder="Talk to us, baby. We didn't mean it." name="message" id="message"></textarea>
+            </div>
+          </fieldset>
+          <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

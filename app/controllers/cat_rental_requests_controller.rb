@@ -13,6 +13,7 @@ class CatRentalRequestsController < ApplicationController
     @cat = @rental.cat
     @rental.user_id = current_user.id
     if @rental.save
+      flash[:notice] = "Request submitted."
       redirect_to cat_url(@cat)
     else
       flash.now[:errors] = @rental.errors.full_messages
@@ -23,6 +24,7 @@ class CatRentalRequestsController < ApplicationController
   def approve
     @rental = CatRentalRequest.find(params[:id])
     @rental.approve!
+    flash[:notice] = "Request approved."
 
     redirect_to cat_url(@rental.cat)
   end
@@ -31,6 +33,7 @@ class CatRentalRequestsController < ApplicationController
   def deny
     @rental = CatRentalRequest.find(params[:id])
     @rental.deny!
+    flash[:notice] = "Request denied."
 
     redirect_to cat_url(@rental.cat)
   end

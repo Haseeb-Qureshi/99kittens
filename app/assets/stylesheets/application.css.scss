@@ -15,8 +15,18 @@
  */
 
  @import "bootstrap-sprockets";
+ $grid-float-breakpoint: 768px;
  @import "bootstrap";
+ @import url(http://fonts.googleapis.com/css?family=Roboto);
+ @import url(http://fonts.googleapis.com/css?family=Indie+Flower);
 
+h1.titlepage {
+  font-family: 'Indie Flower', cursive;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 img.cats {
   padding: 10px;
@@ -58,3 +68,20 @@ span.errors {
   border: 10px solid #FFC6B8;
   background: #FFC6B8;
 }
+
+img.logo {
+  max-width: 100px;
+  margin-top: 7px; 
+  margin-left: 15px;
+}
+
+.voffset  { margin-top: 2px; }
+.voffset1 { margin-top: 5px; }
+.voffset2 { margin-top: 10px; }
+.voffset3 { margin-top: 15px; }
+.voffset4 { margin-top: 30px; }
+.voffset5 { margin-top: 40px; }
+.voffset6 { margin-top: 60px; }
+.voffset7 { margin-top: 80px; }
+.voffset8 { margin-top: 100px; }
+.voffset9 { margin-top: 150px; }

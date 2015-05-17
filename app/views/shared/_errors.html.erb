@@ -1,7 +1,16 @@
 <% if flash[:errors] %>
-  <div class="errors">
-    <span class="errors">
-      <%= flash[:errors].join(". ") %>
-    </span>
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="alert alert-danger">
+      <%= flash[:errors].join(". ") + '.' %>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="alert alert-info alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= flash[:notice] %>
+    </div>
   </div>
 <% end %>
