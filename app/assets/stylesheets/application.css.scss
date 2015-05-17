@@ -20,7 +20,7 @@
  @import url(http://fonts.googleapis.com/css?family=Roboto);
  @import url(http://fonts.googleapis.com/css?family=Indie+Flower);
 
-h1.titlepage {
+.titlepage {
   font-family: 'Indie Flower', cursive;
 }
 
@@ -71,7 +71,7 @@ span.errors {
 
 img.logo {
   max-width: 100px;
-  margin-top: 7px; 
+  margin-top: 7px;
   margin-left: 15px;
 }
 
@@ -85,3 +85,4 @@ img.logo {
 .voffset7 { margin-top: 80px; }
 .voffset8 { margin-top: 100px; }
 .voffset9 { margin-top: 150px; }
+.voffset10 { margin-top: 200px; }

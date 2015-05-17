@@ -2,7 +2,8 @@
   <h1 class="title">99Kittens</h1>
 
   <h1><small>Rent a kitten for your lonely, lonely weekend</small></h1>
-  (We only have <%= @cats.size %> left, the other <%= 99 - @cats.size %> died of sadness while waiting for you.)
+  <p>(We apologize for only having <%= @cats.size %> kittens currently available. <%= 99 - @cats.size %> kittens were recently lost in a tragic UPS accident.)</p>
+  <p>(In other news, we are pleased to announce that FedEx is now the official carrier of 99Kittens!)</p>
 
   <% unless @cats.empty? %>
     <ul>
