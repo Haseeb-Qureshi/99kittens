@@ -1,5 +1,5 @@
 Cat.create!(name: 'Garfield', sex: 'M', birth_date: 47.months.ago, color: 'red', user_id: 1)
-Cat.create!(name: 'Spinkles', sex: 'F', birth_date: 65.months.ago, color: 'calico', user_id: 1, description: "not actually a cat. details upon inquiry.")
+Cat.create!(name: 'Sprinkles', sex: 'F', birth_date: 65.months.ago, color: 'calico', user_id: 1, description: "not actually a cat. details upon inquiry.")
 Cat.create!(name: 'Ludwig', sex: 'M', birth_date: 88.months.ago, color: 'brown', user_id: 1)
 Cat.create!(name: 'Snowball', sex: 'F', birth_date: 88.months.ago, color: 'brown', description: "i found her in the trash", user_id: 2)
 
