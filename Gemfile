@@ -28,6 +28,7 @@ gem 'bcrypt'
 gem 'useragent'
 gem 'geocoder'
 gem 'heroku'
+gem 'rename'
 
 
 # Use Unicorn as the app server

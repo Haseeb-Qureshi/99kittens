@@ -58,7 +58,8 @@ class CatRentalRequest < ActiveRecord::Base
   end
 
   def start_date_before_end_date
-    errors.add(:start_date, "cannot precede end date") if end_date < start_date
+    errors.add(:start_date, "cannot precede end date") if end_date &&
+                                                          end_date < start_date
   end
 
   def set_status

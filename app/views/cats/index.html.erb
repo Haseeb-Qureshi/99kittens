@@ -1,5 +1,5 @@
 <div>
-  <div class="jumbotron col-xs-12">
+  <div class="jumbotron col-md-10 col-md-offset-1 col-xs-12">
     <h1 class="title">99Kittens</h1>
 
     <h2><small>Rent a kitten for your lonely, lonely weekend</small></h2>
@@ -7,12 +7,12 @@
     <p><small>In unrelated news, we've listened to your feedback, and we're proud to announce that UPS is now the official carrier of 99Kittens!</small></p>
   </div>
   <% unless @cats.empty? %>
-    <ul>
+    <ul class="cats">
       <div class="row">
         <% @cats.each_with_index do |cat, i| %>
           <div class="col-xs-6 col-md-3">
               <a href="<%= cat_url(cat) %>">
-                <img src="<%= cat.place_kitten %>" height="150" width="150" class="cat-thumb center-block"><br>
+                <img src="<%= cat.place_kitten %>" height="150" width="150" class="cat-thumb center-block img-responsive"><br>
                 <p class="text-center"> <%= cat.name %></p>
               </a>
           </div>
@@ -21,14 +21,14 @@
     </ul>
   <% end %>
 
-  <div class="col-xs-6 col-xs-offset-3">
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
     <% if current_user %>
       <a href="<%= new_cat_url %>" class="btn btn-primary center-block" role="button">
         <h3 class="center-text">Rent out your own kitten</h3>
       </a>
     <% else %>
     <a href="<%= new_user_url %>" class="btn btn-primary center-block" role="button">
-      <h3 class="center-text">Rent out your own kitten</h3>
+      <h2 class="center-text">Rent out your own kitten</h3>
     </a>
     <% end %>
   </div>
