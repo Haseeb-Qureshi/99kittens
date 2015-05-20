@@ -6,26 +6,19 @@
     -o-background-size: cover;
     background-size: cover;
   }
-  .frontpage {
-    padding-top: 20px;
-    color: white;
-    text-shadow: black 0.1em 0.1em 0.2em;
-  }
-  h1 {
-    font-weight: 400;
-    font-size: 40px;
-  }
 </style>
 
 <div class="row frontpage">
   <div class="col-xs-6 col-xs-offset-3">
-      <h1 class="voffset9 text-center cutetext">We have kittens.</h1>
-      <h1 class="text-center voffset5 cutetext">You are lonely.</h1>
-      <p class="text-center voffset4 lead cutetext">
-        <a href="<%= cats_url %>" class="btn btn-lg btn-info">I bet we can work something out.</a>
-      </p>
-      <div class="voffset7 text-center">
-        <small style="font-size: 14px; color:black; text-shadow: white 0.1em 0.1em 0.4em;">Created, coded, and designed by <a href="http://github.com/Haseeb-Qureshi">Haseeb Qureshi</a>.</small>
-      </div>
+    <h1 class="voffset9 text-center cutetext">We have kittens.</h1>
+    <h1 class="text-center voffset5 cutetext">You are lonely.</h1>
+  </div>
+</div>
+<div class="row">
+  <p class="text-center voffset4 lead cutetext">
+    <a href="<%= cats_url %>" class="btn btn-lg btn-info frontpage">I bet we can work something out.</a>
+  </p>
+  <div class="col-md-6 col-md-offset-3 col-xs-12 voffset7 text-center">
+    <small style="font-size: 14px; color:black; text-shadow: white 0.1em 0.1em 0.4em;">Created, coded, and designed by <a href="http://github.com/Haseeb-Qureshi">Haseeb Qureshi</a>.</small>
   </div>
 </div>

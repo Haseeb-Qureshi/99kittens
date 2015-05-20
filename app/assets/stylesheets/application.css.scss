@@ -21,7 +21,7 @@
  @import url(https://fonts.googleapis.com/css?family=Indie+Flower);
 
 @media (max-width: 768px) {
-    h2{font-size: 150%;}
+    h2{font-size: 145%;}
     small{font-size: 70%;}
     h3{font-size: 60%;}
 }
@@ -29,6 +29,16 @@
 .cutetext {
   font-family: 'Indie Flower', cursive;
 }
+
+.frontpage {
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  h1{
+    font-weight: 400;
+    font-size: 40px;
+  }
+}
+
 
 
 body {

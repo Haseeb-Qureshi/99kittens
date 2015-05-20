@@ -49,7 +49,7 @@
 
   <div class="col-sm-6">
     <% if @cat.cat_rental_requests.any? %>
-      <h3>All Requests for <%= @cat.name %></h3>
+      <h2>All Requests for <%= @cat.name %></h2>
 
       <% @cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
         <div class="table-responsive center-block">
@@ -59,16 +59,10 @@
             when "DENIED" then "danger"
             else "success"
             end %>
-            <% rental.attributes.each do |attr, value| %>
-              <% next if ["created_at", "updated_at", "cat_id", "id"].include?(attr) %>
-              <% if attr == "status" %>
-                <tr class="<%= styling %>"><th>Status</th> <td><%= value %></td></tr>
-              <% elsif attr == "user_id" %>
-                <tr class="<%= styling %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
-              <% else %>
-                <tr class="<%= styling %>"><th><%= attr.capitalize.gsub('_', ' ') %></th> <td><%= value.strftime("%m/%d/%Y") %></td></tr>
-              <% end %>
-            <% end %>
+            <tr class="<%= styling %>"><th>Status</th> <td><%= rental.status %></td></tr>
+            <tr class="<%= styling %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
+            <tr class="<%= styling %>"><th>Start Date</th> <td><%= rental.start_date.strftime("%m/%d/%Y") %></td></tr>
+            <tr class="<%= styling %>"><th>End Date</th> <td><%= rental.end_date.strftime("%m/%d/%Y") %></td></tr>
           </table>
         </div>
         <% if rental.pending? && current_user && current_user.owns?(@cat) %>
@@ -79,7 +73,7 @@
         <% end %>
       <% end %>
     <% else %>
-        <h3><p>No requests for <%= @cat.name %> yet.</p></h3>
+        <h2><p>No requests for <%= @cat.name %> yet.</p></h2>
         <p>It may have some kind of disease.</p>
     <% end %>
   </div>
