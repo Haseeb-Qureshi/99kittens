@@ -10,7 +10,6 @@
       <a class="pull-left" href="<%= root_url %>">
         <img class="logo" alt="99kittens" src="<%= image_url("99kittens.png") %>">
       </a>
-
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-collapsed">
@@ -23,6 +22,9 @@
         <% if current_user.nil? %>
           <li class="<%= "active" if current_page?(new_user_url) %>">
             <%= link_to "Register", new_user_url %>
+          </li>
+          <li>
+            <a rel="nofollow" href="<%= dummy_login_session_url %>">(Demo Log in)</a>
           </li>
           <li class="<%= "active" if current_page?(new_session_url) %>">
             <a rel="nofollow" href="<%= new_session_url %>"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a>

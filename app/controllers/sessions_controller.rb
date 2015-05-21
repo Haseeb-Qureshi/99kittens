@@ -29,4 +29,9 @@ class SessionsController < ApplicationController
     @sessions = current_user.sessions
     render :display
   end
+
+  def dummy_login
+    log_in(User.first)
+    redirect_to cats_url
+  end
 end

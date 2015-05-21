@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :new, :destroy] do
     member do
       get 'display'
+      get 'dummy_login'
     end
   end
 
