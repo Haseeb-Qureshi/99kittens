@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(user_params[:user_name], user_params[:password])
     if @user.nil?
+      flash.now[:errors] = "Invalid username/password combination"
       @user = User.new
       render :new
     else

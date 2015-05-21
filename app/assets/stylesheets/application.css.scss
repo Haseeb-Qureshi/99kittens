@@ -75,16 +75,24 @@ div.errors {
   padding: 20px;
 }
 
-div.approvals {
-  padding: 0 0 0 52px;
-}
-
 form.button_to {
   padding: 2px;
 }
 
 ul.cats {
   padding: 0;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.light-gray {
+  background-color: #F8F8F8;
 }
 
 span.errors {

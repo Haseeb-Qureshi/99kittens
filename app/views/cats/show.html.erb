@@ -1,5 +1,5 @@
 <div class="row">
-  <h1 class="name text-center"><%= @cat.name %></h1>
+  <h1 class="col-sm-12 name text-center"><%= @cat.name %></h1>
   <div class="col-sm-6">
     <img class="cats center-block" src="<%= @cat.place_kitten %>" height="250" width="250">
     <div class="table-responsive center-block">
@@ -23,10 +23,6 @@
       </table>
     </div>
     <div class="btn-group-vertical center-text center-block" role="group">
-      <a href="<%= cats_url %>" class="btn btn-default" role="button">
-        <span class="glyphicon glyphicon-th"></span>
-        Back to all kittens
-      </a>
       <% if current_user %>
         <% if current_user.owns?(@cat) %>
           <a href="<%= edit_cat_url(@cat) %>" class="btn btn-default" role="button">
@@ -44,6 +40,10 @@
           </a>
         <% end %>
       <% end %>
+      <a href="<%= cats_url %>" class="btn btn-default" role="button">
+        <span class="glyphicon glyphicon-th"></span>
+        Back to all kittens
+      </a>
     </div>
   </div>
 
@@ -66,9 +66,21 @@
           </table>
         </div>
         <% if rental.pending? && current_user && current_user.owns?(@cat) %>
-          <div class="approvals">
-            <%= button_to "Approve", { controller: "cat_rental_requests", action: "approve", id: rental.id} %>
-            <%= button_to "Deny", { controller: "cat_rental_requests", action: "deny", id: rental.id } %>
+          <div>
+            <form class="button_to" method="post" action="<%= approve_cat_rental_request_url(rental) %>">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <button type="submit" class="btn btn-default light-gray">
+                <span class="glyphicon glyphicon-thumbs-up green" aria-hidden="true"></span>
+                Approve Request
+              </button>
+            </form>
+            <form class="button_to" method="post" action="<%= deny_cat_rental_request_url(rental) %>">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <button type="submit" class="btn btn-default light-gray">
+                <span class="glyphicon glyphicon-thumbs-down red" aria-hidden="true"></span>
+                Deny Request
+              </button>
+            </form><br>
           </div>
         <% end %>
       <% end %>
