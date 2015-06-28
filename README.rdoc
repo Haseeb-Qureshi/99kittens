@@ -1,28 +1,7 @@
-== README
+== Ninety Nine Kittens
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ninety Nine Kittens is a spinoff of the (now defunct) 99 Dresses. Log in, click around, put in a request to rent a kitten for the weekend!
 
-Things you may want to cover:
+Come on, you know you want one.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+http://ninetyninekittens.herokuapp.com/
