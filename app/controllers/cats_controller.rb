@@ -1,21 +1,16 @@
 class CatsController < ApplicationController
-  before_action :validate_owner, only: [:edit, :update, :destroy]
+  before_action :validate_cat_owner, only: [:edit, :update, :destroy]
 
   def index
     @cats = Cat.all
-
-    render :index
   end
 
   def show
     @cat = Cat.find(params[:id])
-
-    render :show
   end
 
   def new
     @cat = Cat.new
-    render :new
   end
 
   def create
@@ -32,8 +27,6 @@ class CatsController < ApplicationController
 
   def edit
     @cat = Cat.find(params[:id])
-
-    render :edit
   end
 
   def update
@@ -49,7 +42,7 @@ class CatsController < ApplicationController
 
   def destroy
     cat = Cat.find(params[:id])
-    cat.destroy
+    cat.destroy!
     flash[:notice] = "#{cat.name} was deleted. I hope you can live with yourself."
     redirect_to cats_url
   end
@@ -60,9 +53,8 @@ class CatsController < ApplicationController
     params.require(:cat).permit(:name, :color, :sex, :description, :birth_date)
   end
 
-  def validate_owner
+  def validate_cat_owner
     cat = Cat.find(params[:id])
-    redirect_to cats_url if cat.nil? || cat.owner != current_user
+    redirect_to cats_url if cat.nil? || cat.user_id != current_user.id
   end
-
 end

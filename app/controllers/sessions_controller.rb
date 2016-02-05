@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
-
   def new
     @user = User.new
-    render :new
   end
 
   def create
@@ -27,7 +25,6 @@ class SessionsController < ApplicationController
 
   def display
     @sessions = current_user.sessions
-    render :display
   end
 
   def dummy_login
