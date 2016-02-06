@@ -1,95 +1,14 @@
 <div class="row">
-  <h1 class="col-sm-12 name text-center"><%= @cat.name %></h1>
   <div class="col-sm-6">
+    <h1 class="col-sm-12 name text-center center-block"><%= @cat.name %></h1>
     <img class="cats center-block" src="<%= @cat.place_kitten %>" height="250" width="250">
-    <div class="table-responsive center-block">
-      <table class="table table-bordered table-striped">
-        <% @cat.attributes.each do |attr, value| %>
-          <% next if ["created_at", "updated_at", "name", "id", "birth_date", "user_id"].include?(attr) %>
-          <% next if value.blank? %>
-          <tr>
-            <th><em><%= attr %></em></th>
-            <td><%= value %></td>
-          </tr>
-        <% end %>
-        <tr>
-          <th><em>age</em></th>
-          <td><%= time_ago_in_words(@cat.birth_date) %></td>
-        </tr>
-        <tr>
-          <th><em>owner</em></th>
-          <td><%= User.find(@cat.user_id).user_name %></td>
-        </tr>
-      </table>
-    </div>
-    <div class="btn-group-vertical center-text center-block" role="group">
-      <% if current_user %>
-        <% if current_user.owns?(@cat) %>
-          <a href="<%= edit_cat_url(@cat) %>" class="btn btn-default" role="button">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            <%= "Edit #{@cat.name}" %>
-          </a>
-          <a href="<%= cat_url(@cat) %>" class="btn btn-default" role="button" data-method="delete">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <%= "Delete #{@cat.name}" %>
-          </a>
-        <% else %>
-          <a href="<%= new_cat_cat_rental_request_url(@cat) %>" class="btn btn-default" role="button">
-            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-            <%= "Request #{@cat.name}"%>
-          </a>
-        <% end %>
-      <% end %>
-      <a href="<%= cats_url %>" class="btn btn-default" role="button">
-        <span class="glyphicon glyphicon-th"></span>
-        Back to all kittens
-      </a>
-    </div>
+    <%= render "cat_details", cat: @cat %>
+    <%= render "cat_buttons", cat: @cat %>
+
+    <a href="<%= cats_url %>" class="btn btn-default" role="button">
+      <span class="glyphicon glyphicon-th"></span>Back to all kittens
+    </a>
   </div>
+</div>
 
-  <div class="col-sm-6">
-    <% if @cat.cat_rental_requests.any? %>
-      <h2>All Requests for <%= @cat.name %></h2>
-
-      <% @cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
-        <div class="table-responsive center-block">
-          <table class="table table-bordered">
-            <% styling = case rental.status
-            when "PENDING" then "warning"
-            when "DENIED" then "danger"
-            else "success"
-            end %>
-            <tr class="<%= styling %>"><th>Status</th> <td><%= rental.status %></td></tr>
-            <tr class="<%= styling %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
-            <tr class="<%= styling %>"><th>Start Date</th> <td><%= rental.start_date.strftime("%m/%d/%Y") %></td></tr>
-            <tr class="<%= styling %>"><th>End Date</th> <td><%= rental.end_date.strftime("%m/%d/%Y") %></td></tr>
-          </table>
-        </div>
-        <% if rental.pending? && current_user && current_user.owns?(@cat) %>
-          <div>
-            <form class="button_to" method="post" action="<%= approve_cat_rental_request_url(rental) %>">
-              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-              <button type="submit" class="btn btn-default light-gray">
-                <span class="glyphicon glyphicon-thumbs-up green" aria-hidden="true"></span>
-                Approve Request
-              </button>
-            </form>
-            <form class="button_to" method="post" action="<%= deny_cat_rental_request_url(rental) %>">
-              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-              <button type="submit" class="btn btn-default light-gray">
-                <span class="glyphicon glyphicon-thumbs-down red" aria-hidden="true"></span>
-                Deny Request
-              </button>
-            </form><br>
-          </div>
-        <% end %>
-      <% end %>
-    <% else %>
-        <h2><p>No requests for <%= @cat.name %> yet.</p></h2>
-        <p>It may have some kind of disease.</p>
-    <% end %>
-  </div>
-
-<div class="row">
-
-</end>
+<%= render "rental_requests", cat: @cat %>

@@ -1,0 +1,20 @@
+<div class="table-responsive center-block">
+  <table class="table table-bordered table-striped">
+    <% cat.attributes.each do |attr, value| %>
+      <% next if ["created_at", "updated_at", "name", "id", "birth_date", "user_id"].include?(attr) %>
+      <% next if value.blank? %>
+      <tr>
+        <th><em><%= attr %></em></th>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th><em>age</em></th>
+      <td><%= time_ago_in_words(cat.birth_date) %></td>
+    </tr>
+    <tr>
+      <th><em>owner</em></th>
+      <td><%= cat.owner.user_name %></td>
+    </tr>
+  </table>
+</div>
