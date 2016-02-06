@@ -1,19 +1,19 @@
-<div class="col-sm-6">
+<div class="col-sm-5 col-sm-offset-1">
   <% if cat.cat_rental_requests.any? %>
-    <h2>All Requests for <%= cat.name %></h2>
+    <h2 class="text-center center-block">All Requests for <%= cat.name %></h2>
 
     <% cat.cat_rental_requests.order(:start_date).includes(:user).each do |rental| %>
       <div class="table-responsive center-block">
         <table class="table table-bordered">
-          <% styling = case rental.status
-                       when "PENDING" then "warning"
-                       when "DENIED" then "danger"
-                       else "success"
-                       end %>
-          <tr class="<%= styling %>"><th>Status</th> <td><%= rental.status %></td></tr>
-          <tr class="<%= styling %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
-          <tr class="<%= styling %>"><th>Start Date</th> <td><%= rental.start_date.strftime("%m/%d/%Y") %></td></tr>
-          <tr class="<%= styling %>"><th>End Date</th> <td><%= rental.end_date.strftime("%m/%d/%Y") %></td></tr>
+          <% klass = case rental.status
+                     when "PENDING" then "warning"
+                     when "DENIED" then "danger"
+                     else "success"
+                     end %>
+          <tr class="<%= klass %>"><th>Status</th> <td><%= rental.status %></td></tr>
+          <tr class="<%= klass %>"><th>Requester</th> <td><%= rental.user.user_name %></td></tr>
+          <tr class="<%= klass %>"><th>Start Date</th> <td><%= rental.start_date.strftime("%m/%d/%Y") %></td></tr>
+          <tr class="<%= klass %>"><th>End Date</th> <td><%= rental.end_date.strftime("%m/%d/%Y") %></td></tr>
         </table>
       </div>
       <% if rental.pending? && current_user && current_user.owns?(cat) %>

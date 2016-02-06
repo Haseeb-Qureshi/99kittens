@@ -1,14 +1,3 @@
-<div class="row">
-  <div class="col-sm-6">
-    <h1 class="col-sm-12 name text-center center-block"><%= @cat.name %></h1>
-    <img class="cats center-block" src="<%= @cat.place_kitten %>" height="250" width="250">
-    <%= render "cat_details", cat: @cat %>
-    <%= render "cat_buttons", cat: @cat %>
-
-    <a href="<%= cats_url %>" class="btn btn-default" role="button">
-      <span class="glyphicon glyphicon-th"></span>Back to all kittens
-    </a>
-  </div>
-</div>
+<%= render @cat %>
 
 <%= render "rental_requests", cat: @cat %>
