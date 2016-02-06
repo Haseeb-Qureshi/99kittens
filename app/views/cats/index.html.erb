@@ -1,43 +1,25 @@
 <div>
-  <div class="jumbotron col-md-10 col-md-offset-1 col-xs-12">
+  <div class="jumbotron col-md-8 col-md-offset-2 col-xs-12">
     <h1 class="title">99Kittens</h1>
 
     <h2><small>Rent a kitten for your lonely, lonely weekend</small></h2>
     <p><small>We apologize for only having <%= @cats.size %> kittens currently available. <%= 99 - @cats.size %> kittens were recently lost in a tragic FedEx accident.</small></p>
     <p><small>In unrelated news, we've listened to your feedback, and we're proud to announce that UPS is now the official carrier of 99Kittens!</small></p>
   </div>
-  <% unless @cats.empty? %>
-    <ul class="cats">
-      <div class="row">
-        <% @cats.each_with_index do |cat, i| %>
-          <div class="col-xs-6 col-md-3">
-              <a href="<%= cat_url(cat) %>">
-                <img src="<%= cat.place_kitten %>" height="150" width="150" class="cat-thumb center-block img-responsive"><br>
-                <p class="text-center"> <%= cat.name %></p>
-              </a>
-          </div>
-        <% end %>
-      </div>
-    </ul>
-  <% end %>
+
+  <%= render "cats", cats: @cats %>
 
   <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-    <% if current_user %>
-      <a href="<%= new_cat_url %>" class="btn btn-primary center-block" role="button">
-        <h2 class="center-text">Rent out your own kitten</h2>
-      </a>
-    <% else %>
-    <a href="<%= new_user_url %>" class="btn btn-primary center-block" role="button">
+    <a href="<%= current_user ? new_cat_url : new_user_url %>"
+       class="voffset4 btn btn-primary center-block"
+       role="button">
       <h2 class="center-text">Rent out your own kitten</h2>
     </a>
-    <% end %>
   </div>
-
 
   <% if current_user %>
     <div class="col-xs-12">
-      <br><br>
-      <small><%= link_to "Display all current sessions", display_session_url %></small>
+      <br><br><small><%= link_to "Display all current sessions", display_session_url %></small>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,16 @@
+<% unless cats.empty? %>
+  <ul class="cats">
+    <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+      <% cats.each_with_index do |cat, i| %>
+        <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="<%= cat_url(cat) %>">
+              <img src="<%= cat.place_kitten %>" height="150" width="150" class="cat-thumb center-block img-responsive"><br>
+              <p class="text-center">
+                <%= cat.name %>
+              </p>
+            </a>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+<% end %>
