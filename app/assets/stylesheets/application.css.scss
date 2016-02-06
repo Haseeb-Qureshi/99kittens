@@ -32,10 +32,16 @@
 
 .frontpage {
   color: white;
+  font-size: 22px;
   text-shadow: black 0.1em 0.1em 0.2em;
-  h1{
+  h1 {
     font-weight: 400;
     font-size: 40px;
+  }
+  small {
+    font-size: 18px;
+    color: black;
+    text-shadow: white 0 0 0.3em;
   }
 }
 
