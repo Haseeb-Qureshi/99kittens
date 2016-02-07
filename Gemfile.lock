@@ -74,6 +74,8 @@ GEM
     eventmachine (1.0.7)
     excon (0.45.3)
     execjs (2.5.2)
+    figaro (1.1.1)
+      thor (~> 0.14)
     geocoder (1.2.8)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
@@ -212,6 +214,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.4)
   byebug
   coffee-rails (~> 4.1.0)
+  figaro
   geocoder
   heroku
   jbuilder (~> 2.0)

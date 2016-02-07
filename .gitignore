@@ -12,5 +12,5 @@
 !/log/.keep
 /tmp
 
-# Ignore secret stuff
-*/newrelic.yml
+# Ignore application configuration
+/config/application.yml

@@ -30,6 +30,7 @@ gem 'geocoder'
 gem 'heroku'
 gem 'rename'
 gem 'newrelic_rpm'
+gem 'figaro'
 
 
 # Use Unicorn as the app server
