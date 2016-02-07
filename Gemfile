@@ -29,6 +29,7 @@ gem 'useragent'
 gem 'geocoder'
 gem 'heroku'
 gem 'rename'
+gem 'newrelic_rpm'
 
 
 # Use Unicorn as the app server
