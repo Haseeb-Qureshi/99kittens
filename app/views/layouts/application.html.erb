@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NinetyNineCats</title>
+  <title>NinetyNineKittens</title>
   <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag "application" , media: "all" %>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,7 +13,6 @@
   <div class="container-fluid">
     <%= yield %>
   </div>
-  <div class="voffset5">
-  </div>
+  <div class="voffset5"></div>
 </body>
 </html>
