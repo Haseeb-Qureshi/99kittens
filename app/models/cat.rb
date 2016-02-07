@@ -19,15 +19,19 @@ class Cat < ActiveRecord::Base
     message: "must be selected." }
   validates :sex, inclusion: { in: ['M', 'F'],
     message: "must be selected." }
+  validate :true_to_name
 
   belongs_to :owner, class_name: 'User', foreign_key: :user_id, primary_key: :id
   has_many :cat_rental_requests
 
   def place_kitten
-    num = (id % 150) + 350
+    num = (id % 6) + 350
     "http://placekitten.com/g/#{num+5}/#{num+20}"
   end
+
+  private
+
+  def true_to_name
+    errors.add(:cats, "can't exceed 99. Come on now.") if Cat.count >= 99
+  end
 end
-
-
-# TA: CSS

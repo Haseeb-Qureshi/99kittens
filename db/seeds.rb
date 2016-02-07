@@ -4,12 +4,12 @@ User.create!(user_name: "Sal", password: "salsal")
 User.create!(user_name: "Mindy", password: "mindymindy")
 User.create!(user_name: "Rambo", password: "ramborambo")
 
-Cat.create!(name: 'Garfield', sex: 'M', birth_date: 47.months.ago, color: 'red', user_id: 1, description: "abhors Mondays")
-Cat.create!(name: 'Sprinkles', sex: 'F', birth_date: 65.months.ago, color: 'calico', user_id: 4, description: "not actually a cat. details upon inquiry.")
+Cat.create!(name: 'Bernard', sex: 'M', birth_date: 47.months.ago, color: 'red', user_id: 1, description: "I believe he was a cow in a previous life")
+Cat.create!(name: 'Sprinkles', sex: 'F', birth_date: 65.months.ago, color: 'calico', user_id: 3, description: "will accept power tools as trade.")
 Cat.create!(name: 'Ludwig', sex: 'M', birth_date: 88.months.ago, color: 'brown', user_id: 3, description: "SPEAKS ENGLISH WHEN MY WIFE ISNT AROUND")
-Cat.create!(name: 'Snowball', sex: 'F', birth_date: 14.months.ago, color: 'brown', description: "will accept vaccuum cleaner as trade", user_id: 2)
+Cat.create!(name: 'Snowball', sex: 'F', birth_date: 14.months.ago, color: 'brown', description: "not actually a cat. details upon inquiry", user_id: 4)
 Cat.create!(name: 'Mindy', sex: 'F', birth_date: 12.months.ago, color: 'brown', description: "i found her in the trash", user_id: 4)
-Cat.create!(name: 'Bingo', sex: 'M', birth_date: 8.months.ago, color: 'brown', description: "Won't stop judging me. Please rent.", user_id: 2)
+Cat.create!(name: 'Bingo', sex: 'M', birth_date: 8.months.ago, color: 'brown', description: "Won't stop judging me. Please take him away.", user_id: 2)
 
 
 
